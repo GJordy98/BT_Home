@@ -4,6 +4,16 @@ import { site, whatsappLink } from "@/data/site";
 export default function Footer() {
   return (
     <footer className="footer">
+      <div className="container footer__visit">
+        <div>
+          <p className="footer__label">{site.hours}</p>
+          <a href={site.phoneHref} className="footer__phone">{site.phone}</a>
+        </div>
+        <div className="footer__actions">
+          <Link href="/contact#devis" className="btn btn--light">Prendre rendez-vous</Link>
+          <a href={whatsappLink("Bonjour, je souhaite visiter la salle.")} className="link-arrow" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
       <div className="container footer__grid">
         <div>
           <p className="footer__brand">{site.name}</p>
@@ -14,7 +24,6 @@ export default function Footer() {
           <ul>
             <li><a href={site.phoneHref}>{site.phone}</a></li>
             <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li>{site.hours}</li>
           </ul>
         </div>
         <nav aria-label="Plan du site">

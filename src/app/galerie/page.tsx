@@ -34,7 +34,7 @@ export default function GaleriePage() {
         title={<>La salle, <em>en situation</em></>}
         intro="Des photos prises lors d'événements organisés chez nous. Cliquez sur une image pour l'agrandir."
       />
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="container"><Gallery photos={PHOTOS} /></div>
       </section>
     </>

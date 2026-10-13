@@ -6,7 +6,7 @@ import PhoneMockup from "@/components/PhoneMockup";
 import PhotoStrip from "@/components/PhotoStrip";
 import Testimonials from "@/components/Testimonials";
 import { reservations } from "@/data/reservations";
-import { photo, site, whatsappLink } from "@/data/site";
+import { photo, site } from "@/data/site";
 
 const EVENTS = [
   { title: "Mariages", href: "/evenements#mariages", img: "mariage-ouverture-du-bal.jpg", alt: "Ouverture du bal d'un mariage", text: "Vin d'honneur, dîner, première danse : on vous laisse la salle dès la veille pour installer.", meta: `jusqu'à ${site.capacity} invités` },
@@ -98,15 +98,18 @@ export default function Home() {
             <h2>Ce qu&apos;on y organise</h2>
             <p>Chaque événement a sa configuration. Les capacités sont indicatives : on en parle lors de la visite.</p>
           </div>
-          <ul className="event-list">
+          <ul className="event-grid">
             {EVENTS.map((e) => (
               <li key={e.title}>
-                <Link href={e.href} className="event-row">
-                  <span className="ph event-row__img"><Image src={photo(e.img)} alt={e.alt} fill sizes="150px" /></span>
-                  <h3>{e.title}</h3>
-                  <p>{e.text}</p>
-                  <span className="event-row__meta">{e.meta}</span>
-                  <span className="event-row__arrow" aria-hidden="true">→</span>
+                <Link href={e.href} className="event-card">
+                  <span className="ph event-card__img"><Image src={photo(e.img)} alt={e.alt} fill sizes="(max-width: 600px) 100vw, (max-width: 1080px) 50vw, 25vw" /></span>
+                  <span className="event-card__label" aria-hidden="true">{e.title}</span>
+                  <span className="event-card__panel">
+                    <h3>{e.title}</h3>
+                    <p>{e.text}</p>
+                    <span className="event-card__meta">{e.meta}</span>
+                    <span className="event-card__cta">Voir les détails</span>
+                  </span>
                 </Link>
               </li>
             ))}
@@ -171,22 +174,11 @@ export default function Home() {
 
       <section className="section rule-top">
         <div className="container">
-          <p className="kicker">Ils ont loué la salle</p>
-          <Testimonials items={TESTIMONIALS} />
-        </div>
-      </section>
-
-      <section className="closing">
-        <div className="container closing__grid">
-          <h2>Le plus simple, c&apos;est de venir voir la salle.</h2>
-          <div className="closing__side">
-            <p>{site.hours}.</p>
-            <a href={site.phoneHref} className="closing__phone">{site.phone}</a>
-            <div className="hero__actions">
-              <Link href="/contact#devis" className="btn">Prendre rendez-vous</Link>
-              <a href={whatsappLink("Bonjour, je souhaite visiter la salle.")} className="link-arrow" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            </div>
+          <div className="section-title">
+            <h2>Ils y ont fait la fête, <em>ils en parlent</em></h2>
+            <p>Mariage, baptême, séminaire : ce qu&apos;ils ont retenu de leur journée dans la salle.</p>
           </div>
+          <Testimonials items={TESTIMONIALS} />
         </div>
       </section>
     </>

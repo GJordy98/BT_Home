@@ -15,7 +15,7 @@ const FORMULES = [
     items: ["Tables et chaises", "Accès à la cuisine traiteur", "Parking privé", "Ménage après l'événement"],
   },
   {
-    name: "Le week-end", subtitle: "Ce que choisissent la plupart des mariés.", price: fcfa(750000), unit: "du vendredi 14 h au dimanche 18 h",
+    name: "Le week-end", featured: true, subtitle: "Ce que choisissent la plupart des mariés.", price: fcfa(750000), unit: "du vendredi 14 h au dimanche 18 h",
     items: ["Tout ce qui est compris à la journée", "Sonorisation et lumière", "Nappage et vaisselle", "Un régisseur présent le jour J"],
   },
   {
@@ -55,12 +55,18 @@ export default function TarifsPage() {
         <div className="container">
           <div className="pricing">
             {FORMULES.map((f) => (
-              <div key={f.name} className="price-col">
+              <div key={f.name} className={`price-card${f.featured ? " price-card--featured" : ""}`}>
+                {f.featured && <span className="price-card__badge">Le plus choisi</span>}
                 <h3>{f.name}</h3>
-                <p>{f.subtitle}</p>
+                <p className="price-card__sub">{f.subtitle}</p>
                 <div className="price">{f.price}<small>{f.unit}</small></div>
+                <Link
+                  href={`/contact?formule=${encodeURIComponent(f.name)}#devis`}
+                  className={`btn ${f.featured ? "btn--light" : "btn--outline"} price-card__cta`}
+                >
+                  Demander un devis
+                </Link>
                 <ul>{f.items.map((i) => <li key={i}>{i}</li>)}</ul>
-                <Link href={`/contact?formule=${encodeURIComponent(f.name)}#devis`} className="link-arrow">Demander un devis</Link>
               </div>
             ))}
           </div>

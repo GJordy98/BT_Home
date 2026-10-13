@@ -117,7 +117,7 @@ export default function SiteEvenementPage() {
         <div className="container connected-hero__grid">
           <div className="connected-hero__text">
             <p className="kicker">En option avec la location · <strong>Site & billets de votre événement</strong></p>
-            <h1>Le site de votre événement, <em>à partager</em> en un lien.</h1>
+            <h1 className="page-title">Le site de votre événement, <em>à partager</em> en un lien.</h1>
             <p className="connected-hero__intro">
               Invitation, confirmations, billets à QR code, plan de table et photos : tout passe par un seul lien,
               que vous envoyez à vos invités sur WhatsApp.
@@ -190,12 +190,12 @@ export default function SiteEvenementPage() {
           </div>
           <div className="pricing">
             {FORMULES.map((f) => (
-              <div key={f.name} className="price-col">
+              <div key={f.name} className="price-card">
                 <h3>{f.name}</h3>
-                <p>{f.subtitle}</p>
+                <p className="price-card__sub">{f.subtitle}</p>
                 <div className="price">Sur devis</div>
+                <Link href={`/contact?formule=${encodeURIComponent(`Site de l'événement — ${f.name}`)}#devis`} className="btn btn--outline price-card__cta">Choisir cette formule</Link>
                 <ul>{f.items.map((i) => <li key={i}>{i}</li>)}</ul>
-                <Link href={`/contact?formule=${encodeURIComponent(`Site de l'événement — ${f.name}`)}#devis`} className="link-arrow">Choisir cette formule</Link>
               </div>
             ))}
           </div>

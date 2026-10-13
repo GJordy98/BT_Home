@@ -8,8 +8,8 @@ export default function PageHero({ image, alt, kicker, title, intro }: Props) {
       <div className="container">
         <div className="page-head__text">
           <div>
-            <p className="kicker">{kicker}</p>
-            <h1>{title}</h1>
+            <p className="page-kicker">{kicker}</p>
+            <h1 className="page-title">{title}</h1>
           </div>
           {intro && <p className="page-head__intro">{intro}</p>}
         </div>
